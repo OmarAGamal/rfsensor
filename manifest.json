@@ -1,0 +1,8 @@
+{
+  "domain": "rfsensor",
+  "name": "RF Sensor",
+  "codeowners": [],
+  "dependencies": [],
+  "requirements": [],
+  "iot_class": "assumed_state"
+}
