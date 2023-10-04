@@ -1,1 +1,1 @@
-"""RF Sesnor integration"""
+"""RF Sensor integration"""
