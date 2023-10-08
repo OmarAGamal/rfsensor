@@ -23,6 +23,20 @@ def setup_platform(
     # We only want this platform to be set up via discovery.
     if discovery_info is None:
         return
-    # add_entities([ExampleSensor()])
-    add_entities()
+    add_entities([ExampleSensor()])
+    
+class ExampleSensor(SensorEntity):
+    """Representation of a Sensor."""
+
+    _attr_name = "Example Temperature"
+    _attr_native_unit_of_measurement = UnitOfTemperature.CELSIUS
+    _attr_device_class = SensorDeviceClass.TEMPERATURE
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def update(self) -> None:
+        """Fetch new state data for the sensor.
+
+        This is the only method that should fetch new data for Home Assistant.
+        """
+        self._attr_native_value = 23
 
