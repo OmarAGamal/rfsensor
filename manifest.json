@@ -1,6 +1,13 @@
 {
   "domain": "rfsensor",
   "name": "RF Sensor",
+  "description": "localdatabase v2 gateway on local database home assistant",
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "ports": {
+    "2000/tcp": 2000
+  },
+  "host_network" : true ,
+  "hassio_api": true,
   "codeowners": [],
   "dependencies": [],
   "requirements": [],
