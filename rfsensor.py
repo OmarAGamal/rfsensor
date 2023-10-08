@@ -1,11 +1,16 @@
 """Platform for sensor integration."""
 from __future__ import annotations
-
-from homeassistant.components.sensor import SensorEntity
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+    SensorEntity,
+    SensorStateClass,
+)
+# from homeassistant.components.sensor import SensorEntity
 from homeassistant.const import TEMP_CELSIUS
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+from . import DOMAIN
 import asyncore
 import socket
 import binascii
@@ -41,7 +46,7 @@ def setup_platform(
     if discovery_info is None:
         return
     # add_entities([ExampleSensor()])
-    add_entities([EchoHandler()])
+    add_entities()
 
 def ConvertKSA (packet) :
     hour = packet[46:48]
@@ -63,7 +68,7 @@ def Load_IndexNum () :
 def Set_IndexNumber () :
     Save_IndexNum(0)
 
-  
+
 def SendPacketToServer (packet) :
     packet = ConvertKSA(packet)
     if ServerActive:
@@ -201,9 +206,10 @@ def ConvertSensorsToReadings (GatwayId,date,time,GatewayBattary,GatewayPower,Num
         dectionarylist.append(jsonname)
         print(json.dumps(jsonname))
         jsonlist.append(json.dumps(jsonname))
+        
     #mqttsend(jsonlist,sensor_id_list)
     del jsonname,jsonlist,sensor_id_list,sensor_temp_list,sensor_hum_list,sensor_battary_list,GatwayId,date,time,GatewayBattary,GatewayPower,NumberOfSensors,Sensorhexlist
-    SendToInternalDataBase(dectionarylist)
+    # SendToInternalDataBase(dectionarylist)
 '''
 def SendToInternalDataBaseToken (dectionarylist):
     bucket = "n"
