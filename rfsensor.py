@@ -6,9 +6,8 @@ from homeassistant.const import TEMP_CELSIUS
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
-
-from . import DOMAIN
-
+import asyncore
+import socket
 def setup_platform(
     hass: HomeAssistant,
     config: ConfigType,
@@ -21,6 +20,7 @@ def setup_platform(
         return
     # add_entities([ExampleSensor()])
     add_entities([EchoHandler()])
+    
 class EchoHandler(asyncore.dispatcher_with_send):
 
     def handle_read(self):
